@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import emptyCart from "../../../assets/cartimg.png"
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-import { addToCart, removeAllFromCart, removeFromCart } from '../../../redux/userSlice';
+import { addToCart, removeAllFromCart, removeFromCart, } from '../../../redux/userSlice';
 import { BasicButton, LightPurpleButton } from '../../../utils/buttonStyles'; //changed to buttonStyles
 import { useNavigate } from 'react-router-dom';
 import { updateCustomer } from '../../../redux/userHandle'; //changed to userHandle
@@ -37,22 +37,22 @@ const Cart = ({ setIsCartOpen }) => {
     const totalNewPrice = cartDetails.reduce((total, item) => total + (item.quantity * item.price.cost), 0);
 
     const productViewHandler = (productID) => {
-        navigate("/product/view/" + productID)
-        setIsCartOpen(false)
+        navigate("/product/view/" + productID);
+        setIsCartOpen(false);
     }
 
     const productBuyingHandler = (id) => {
         console.log(currentUser);
         dispatch(updateCustomer(currentUser, currentUser._id));
-        setIsCartOpen(false)
-        navigate(`/product/buy/${id}`)
+        setIsCartOpen(false);
+        navigate(`/product/buy/${id}`);
     }
 
     const allProductsBuyingHandler = () => {
         console.log(currentUser);
         dispatch(updateCustomer(currentUser, currentUser._id));
-        setIsCartOpen(false)
-        navigate("/product/Checkout")
+        setIsCartOpen(false);
+        navigate("/product/Checkout");
     }
 
     const priceContainerRef = useRef(null);
