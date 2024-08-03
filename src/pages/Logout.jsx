@@ -19,7 +19,7 @@ const Logout = () => {
   }, [currentRole, currentUser, dispatch])
 
   const handleLogout = () => {
-   
+    dispatch(authLogout()); //dispatch handleLogout function
     navigate('/');
   };
 

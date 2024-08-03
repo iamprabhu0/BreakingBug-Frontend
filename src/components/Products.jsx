@@ -15,15 +15,15 @@ const Products = ({ }) => {
 
   const itemsPerPage = 9;
 
-
-  const { currentRole, productData } = useSelector((state) => state.user);
+  // Retrieve productData from the state
+  const { currentRole, responseSearch } = useSelector((state) => state.user);
   const [currentPage, setCurrentPage] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
   const [message, setMessage] = useState("");
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage; //Fixed the calculation for indexOfFirstItem
-  const currentItems = productData.slice(indexOfFirstItem, indexOfLastItem); //Updated to use productData for currentItems
+  const currentItems = responseSearch.slice(indexOfFirstItem, indexOfLastItem); //Updated
 
   const handleAddToCart = (event, product) => {
     event.stopPropagation();
@@ -42,7 +42,7 @@ const Products = ({ }) => {
     setShowPopup(true)
   };
 
-  if (!productData || productData.length === 0) { //changed logic to check if productData is null or empty
+  if (!responseSearch || responseSearch.length === 0) { //changed the condition to check for responseSearch
     return <div>Product not found</div>;
   }
 
@@ -89,10 +89,11 @@ const Products = ({ }) => {
 
       <Container sx={{ mt: 10, mb: 10, display: "flex", justifyContent: 'center', alignItems: "center" }}>
         <Pagination
-          count={Math.ceil(productData.length / itemsPerPage)}
+          count={Math.ceil(responseSearch.length / itemsPerPage)}
           page={currentPage}
           color="secondary"
 
+          onChange={(event, value) => setCurrentPage(value)} // Handle page change
         />
       </Container>
 
