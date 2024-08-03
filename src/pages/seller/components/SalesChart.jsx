@@ -14,8 +14,7 @@ import Chart from 'react-apexcharts';
 import { ChartDatabyYear } from '../../../utils/chartData';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
-const SalesChart = ({  }) => {
+const SalesChart = ({ }) => {
 
     const navigate = useNavigate();
 
@@ -40,7 +39,7 @@ const SalesChart = ({  }) => {
                 <ResponsiveChart
                     options={ChartDatabyYear.options}
                     series={ChartDatabyYear.series}
-                    type={type}
+                    type={ChartDatabyYear.type} //changed type to toChartDatabyYear.type
                 />
             </CardContent>
 

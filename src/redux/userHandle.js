@@ -27,6 +27,7 @@ import {
 } from './userSlice';
 
 export const authUser = (fields, role, mode) => async (dispatch) => {
+
     dispatch(authRequest());
 
     try {
@@ -49,7 +50,8 @@ export const addStuff = (address, fields) => async (dispatch) => {
 
     try {
         const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/${address}`, fields, {
-            headers: { 'Content-Type': 'application/json' },---
+            // removed --
+            headers: { 'Content-Type': 'application/json' },
         });
 
         if (result.data.message) {
@@ -63,7 +65,6 @@ export const addStuff = (address, fields) => async (dispatch) => {
 };
 
 export const updateStuff = (fields, id, address) => async (dispatch) => {
-
     try {
         const result = await axios.put(`${process.env.REACT_APP_BASE_URL}/${address}/${id}`, fields, {
 
@@ -95,20 +96,22 @@ export const deleteStuff = (id, address) => async (dispatch) => {
     }
 }
 
+//fixed syntax error
 export const updateCustomer = (fields, id) => async (dispatch) => {
     dispatch(updateCurrentUser(fields));
-    await axios.put(`${process.env.REACT_APP_BASE_URL}/CustomerUpdate/${id}`, fields);
-};
+
+    //added try block
+    try {
+        await axios.put(`${process.env.REACT_APP_BASE_URL}/CustomerUpdate/${id}`, fields);
 
         dispatch(stuffUpdated());
 
-      } catch (error) {
+    } catch (error) {
 
         dispatch(getError(error));
 
     }
-
-    }
+}
 
 export const getProductsbySeller = (id) => async (dispatch) => {
     dispatch(getRequest());
@@ -159,7 +162,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     }
 }
 
-export const getCustomers = (id) => async (dispatch) => {
+export const getCustomers = (id, address) => async (dispatch) => {
     dispatch(getRequest());
 
     try {
@@ -175,7 +178,7 @@ export const getCustomers = (id) => async (dispatch) => {
         dispatch(getError(error));
     }
 }
-
+//added address paramter
 export const getSpecificProducts = (id, address) => async (dispatch) => {
     dispatch(getRequest());
     try {

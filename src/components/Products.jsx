@@ -7,11 +7,14 @@ import { BasicButton } from '../utils/buttonStyles';
 import { useNavigate } from 'react-router-dom';
 import Popup from './Popup';
 import { addStuff } from '../redux/userHandle';
-
-const Products = ({}) => {
+import { productDataList } from '../utils/products';
+const Products = ({ }) => {
   const dispatch = useDispatch();
+  //added useNavigate hook
+  const navigate = useNavigate();
 
   const itemsPerPage = 9;
+
 
   const { currentRole, responseSearch } = useSelector();
   const [currentPage, setCurrentPage] = useState(1);
@@ -86,7 +89,7 @@ const Products = ({}) => {
 
       <Container sx={{ mt: 10, mb: 10, display: "flex", justifyContent: 'center', alignItems: "center" }}>
         <Pagination
-          count={Math.ceil(productData.length / itemsPerPage)}
+          count={Math.ceil(productDataList.length / itemsPerPage)} //replaced productData.length with productDataList.length
           page={currentPage}
           color="secondary"
 

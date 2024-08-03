@@ -121,13 +121,13 @@ const userSlice = createSlice({
         removeSpecificProduct: (state, action) => {
             const productIdToRemove = action.payload;
             state.currentUser.cartDetails = state.currentUser.cartDetails.filter(
-              (cartItem) => cartItem._id !== productIdToRemove
+                (cartItem) => cartItem._id !== productIdToRemove
 
             );
 
-            
-          },
-        
+
+        },
+
 
         fetchProductDetailsFromCart: (state, action) => {
             const productIdToFetch = action.payload;
@@ -168,10 +168,11 @@ const userSlice = createSlice({
             state.response = true;
             state.isLoggedIn = false;
         },
-
+        //added additional checks 
         isTokenValid: (state) => {
-            const decodedToken = jwtDecode(state.currentToken);
-            if (state.currentToken) {              state.isLoggedIn = true;
+            if (state.currentToken) {
+                const decodedToken = jwtDecode(state.currentToken);
+                state.isLoggedIn = true;
             } else {
                 localStorage.removeItem('user');
                 state.currentUser = null;
@@ -278,7 +279,7 @@ const userSlice = createSlice({
         },
     },
 });
-
+//added setFilteredProducts, getCustomersListFailed, specificProductData to export 
 export const {
     authRequest,
     underControl,
@@ -311,7 +312,10 @@ export const {
     removeAllFromCart,
     fetchProductDetailsFromCart,
     updateCurrentUser,
-    
+    getCustomersListFailed,
+    setFilteredProducts,
+    specificProductData,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
+

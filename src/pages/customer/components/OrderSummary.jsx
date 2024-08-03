@@ -21,8 +21,8 @@ const OrderSummary = ({ handleNext, handleBack }) => {
     React.useEffect(() => {
         if (productID) {
             dispatch(fetchProductDetailsFromCart(productID));
-        }else
-            return(handleNext)
+        } else
+            return (handleNext)
     }, [productID, dispatch]);
 
     let cartDetails = currentUser.cartDetails;
@@ -93,7 +93,8 @@ const OrderSummary = ({ handleNext, handleBack }) => {
                         <ListItem sx={{ py: 1, px: 0 }}>
                             <ListItemText primary="Discount" />
                             <Typography variant="subtitle1" sx={{ color: "green" }}>
-                                ₹{totalamount - totalNewPrice}
+                                {/* replaced by totalOGPrice */}
+                                ₹{totalOGPrice - totalNewPrice}
                             </Typography>
                         </ListItem>
                         <ListItem sx={{ py: 1, px: 0 }}>

@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './userSlice';
 
+// changed reducer to object
 const store = configureStore({
-    reducer={
+    reducer: {
         user: userReducer,
     }
 });

@@ -22,15 +22,15 @@ const Search = () => {
             navigate("/ProductSearch");
         }
     };
-
+    //renamed to e.key and e.target.value
     return (
         <SearchContainer>
             <InputSearchBase
                 placeholder="Search for products, brands and more"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(etargetvalue)}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={(e) => {
-                    if (ekey !== 'Enter') {
+                    if (e.key !== 'Enter') {
                         handleSearch();
                     }
                 }}

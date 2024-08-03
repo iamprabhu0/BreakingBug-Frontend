@@ -32,13 +32,13 @@ const Navbar = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
-
+    // removed referenced ancorElNav
     React.useEffect(() => {
         if (currentRole === "Customer") {
             console.log(currentUser);
             dispatch(updateCustomer(currentUser, currentUser._id));
         }
-    }, [currentRole, currentUser, dispatch, ancorElNav])
+    }, [currentRole, currentUser, dispatch])
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -49,16 +49,15 @@ const Navbar = () => {
 
     const [isCartOpen, setIsCartOpen] = React.useState(false);
 
-    // Cart
-    const handleOpen Cart = () => {
+    // fixed typo in handleOpenCart
+    const handleOpenCart = () => {
         setIsCartOpen(true);
     };
-
-    const handleOpenCart = () => {
+    // renamed to handleCloseCart
+    const handleCloseCart = () => {
         setIsCartOpen(false);
     };
 
-    // Navigation Menu
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -67,7 +66,6 @@ const Navbar = () => {
         setAnchorElNav(null);
     };
 
-    // User Menu
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -76,7 +74,6 @@ const Navbar = () => {
         setAnchorElUser(null);
     };
 
-    // Signin Menu
     const handleOpenSigninMenu = (event) => {
         setAnchorElSign(event.currentTarget);
     };
@@ -94,7 +91,6 @@ const Navbar = () => {
             <Container maxWidth="xl" sx={{ backgroundColor: "#4d1c9c" }}>
                 <Toolbar disableGutters>
 
-                    {/* MOBILE */}
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -164,15 +160,15 @@ const Navbar = () => {
                                         horizontal: 'left',
                                     }}
                                     open={Boolean(anchorElNav)}
-                                  
+
                                     onClick={handleCloseUserMenu}
                                     sx={{
                                         display: { xs: 'block', md: 'none' },
                                     }}
                                 >
                                     <MenuItem onClick={() => {
-                                      navigate("/Customerlogin")
-                                     }}>
+                                        navigate("/Customerlogin")
+                                    }}>
                                         <Typography textAlign="center">Sign in as customer</Typography>
                                     </MenuItem>
                                     <MenuItem onClick={() => {
@@ -186,7 +182,6 @@ const Navbar = () => {
                         </Box>
                     }
 
-                    {/* DESKTOP */}
 
                     <HomeContainer>
                         <Typography
@@ -264,7 +259,6 @@ const Navbar = () => {
                         </Box>
                     }
 
-                    {/* BOTH */}
 
                     {currentRole === "Customer" &&
                         <Box sx={{ flexGrow: 0, display: 'flex' }}>
