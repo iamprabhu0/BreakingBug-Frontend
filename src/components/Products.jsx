@@ -42,7 +42,7 @@ const Products = ({ }) => {
     setShowPopup(true)
   };
 
-  if (!responseSearch) {
+  if (!productData || productData.length === 0) { //changed logic to check if productData is null or empty
     return <div>Product not found</div>;
   }
 

@@ -32,6 +32,8 @@ const Navbar = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+
     // removed referenced ancorElNav
     React.useEffect(() => {
         if (currentRole === "Customer") {
@@ -40,7 +42,6 @@ const Navbar = () => {
         }
     }, [currentRole, currentUser, dispatch, anchorElNav])
 
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [anchorElSign, setAnchorElSign] = React.useState(null);
 
